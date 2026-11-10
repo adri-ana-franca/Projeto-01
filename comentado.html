@@ -1,0 +1,116 @@
+<!DOCTYPE html> <!-- Declara que o documento segue o padrão HTML5, instruindo o navegador a renderizá-lo corretamente com as regras mais modernas. -->
+<html lang="pt-BR"> <!-- Elemento raiz que engloba toda a página. O atributo 'lang' define o idioma para motores de busca (SEO) e leitores de tela para deficientes visuais. -->
+<head> <!-- Cabeçalho do documento. Contém metadados, links e configurações invisíveis para o usuário final, mas fundamentais para a página. -->
+    <meta charset="UTF-8"> <!-- Define a codificação de caracteres. O UTF-8 garante que acentos e cedilha (ç) sejam exibidos sem erros. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Fundamental para o design responsivo. Faz a página se adaptar à largura da tela de celulares e tablets. -->
+    <meta name="description" content="Cardápio da hamburgueria Fogo de Palha."> <!-- Resumo da página lido pelos motores de busca (como o Google) para exibir nos resultados. -->
+    <title>Fogo de Palha | Hamburgueria</title> <!-- Define o título que aparece na aba do navegador e ao salvar a página nos favoritos. -->
+    <link rel="icon" href="img/logo.jpg"> <!-- Linka o 'favicon', aquele ícone pequeno que fica ao lado do título na aba do navegador. -->
+    <link rel="stylesheet" href="css/style.css"> <!-- Importa o arquivo CSS externo, responsável por toda a estilização visual (cores, tamanhos, layout) da página. -->
+</head>
+<body> <!-- Corpo do documento. Tudo o que for inserido nesta tag será o conteúdo visualmente renderizado na tela do usuário. -->
+    <header class="cabecalho"> <!-- Tag semântica que define o cabeçalho da página (ou de uma seção). Geralmente abriga a logo e a navegação. -->
+        <div class="container cabecalho-conteudo"> <!-- 'div' é um contêiner genérico para agrupar elementos, muito usado com classes CSS para controlar o alinhamento e estrutura. -->
+            <a class="logo" href="#inicio"> <!-- Define um hiperlink (âncora). O 'href="#inicio"' faz a página rolar internamente até o elemento com id="inicio". -->
+                <img src="hamburguer.jpg" alt="Logo Fogo de Palha"> <!-- Exibe uma imagem. O 'alt' é um texto alternativo crucial para acessibilidade e caso a imagem falhe ao carregar. -->
+                <span>Fogo de Palha</span> <!-- 'span' é um contêiner genérico em linha (inline). Usado para agrupar/estilizar um pedaço de texto sem quebrar a linha. -->
+            </a>
+
+            <nav aria-label="Navegação principal"> <!-- Tag semântica exclusiva para envolver os links principais de navegação do site. -->
+                <a href="#inicio">Início</a> <!-- Link âncora para a seção inicial. -->
+                <a href="#cardapio">Cardápio</a> <!-- Link âncora para a seção do cardápio. -->
+                <a href="#contato">Contato</a> <!-- Link âncora para a seção de contato (rodapé). -->
+            </nav>
+        </div>
+    </header>
+
+    <main> <!-- Tag semântica que envolve o conteúdo principal e exclusivo da página. Facilita a indexação pelo Google. Só deve existir um <main> por página. -->
+        <section class="hero" id="inicio"> <!-- 'section' representa um bloco genérico de conteúdo temático. O 'id' serve como alvo para os links de navegação. -->
+            <div class="container hero-conteudo"> 
+                <div> 
+                    <p class="destaque">Hambúrguer artesanal</p> <!-- 'p' (parágrafo) é a tag padrão para blocos de texto comuns. -->
+                    <h1>Sabor de verdade, feito na brasa.</h1> <!-- Cabeçalho de nível 1. É o título mais importante da página para SEO. Ideal ter apenas um <h1> por página. -->
+                    <p class="hero-texto"> 
+                        Escolha seu hambúrguer favorito e monte o pedido do seu jeito.
+                    </p>
+                    <a class="botao" href="#cardapio">Ver cardápio</a> <!-- Link que foi visualmente transformado em botão via classe CSS 'botao'. -->
+                </div>
+
+                <div class="hero-ilustracao" aria-hidden="true">🍔</div> <!-- O 'aria-hidden="true"' impede que leitores de tela tentem ler o emoji, já que ele é puramente decorativo. Excelente prática de acessibilidade! -->
+            </div>
+        </section>
+
+        <section class="cardapio" id="cardapio"> 
+            <div class="container"> 
+                <div class="titulo-secao"> 
+                    <p class="destaque">Nosso cardápio</p> 
+                    <h2>Escolha seu hambúrguer</h2> <!-- Cabeçalho de nível 2. Indica um subtítulo, estabelecendo uma hierarquia de informação menor que o <h1>. -->
+                    <p>Produtos e preços fictícios para o projeto da turma.</p> 
+                </div>
+
+                <div class="grade-produtos"> 
+                    <article class="card"> <!-- Tag semântica 'article' indica um conteúdo independente e autoexplicativo (como um produto, notícia ou post). Se extraído da página, ainda faria sentido sozinho. -->
+                        <div class="card-icone" aria-hidden="true">🍔</div> 
+                        <h3>Fogo Clássico</h3> <!-- Cabeçalho de nível 3. Nome do produto, hierarquicamente subordinado ao <h2> "Escolha seu hambúrguer". -->
+                        <p>Pão brioche, carne artesanal, queijo, salada e molho da casa.</p> 
+                        <div class="card-rodape"> 
+                            <strong>R$ 24,90</strong> <!-- Tag 'strong' dá "forte importância" ao texto, geralmente renderizando-o em negrito e indicando relevância semântica. -->
+                            <a href="#pedido">Escolher</a> 
+                        </div>
+                    </article>
+
+                    <article class="card card-destaque"> <!-- O uso de múltiplas classes (card card-destaque) permite reaproveitar o layout base e adicionar modificadores visuais específicos para este item. -->
+                        <span class="selo">Favorito</span> 
+                        <div class="card-icone" aria-hidden="true">🥓</div>
+                        <h3>Brasa Bacon</h3>
+                        <p>Carne artesanal, queijo duplo, bacon crocante e molho defumado.</p>
+                        <div class="card-rodape">
+                            <strong>R$ 31,90</strong>
+                            <a href="#pedido">Escolher</a>
+                        </div>
+                    </article>
+
+                    <article class="card"> 
+                        <div class="card-icone" aria-hidden="true">🥬</div>
+                        <h3>Horta na Brasa</h3>
+                        <p>Hambúrguer vegetal, queijo, tomate, folhas e maionese temperada.</p>
+                        <div class="card-rodape">
+                            <strong>R$ 27,90</strong>
+                            <a href="#pedido">Escolher</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="pedido" id="pedido"> 
+            <div class="container pedido-conteudo">
+                <div>
+                    <p class="destaque">Como pedir</p>
+                    <h2>Um fluxo simples</h2>
+                </div>
+
+                <ol> <!-- Tag que cria uma lista ordenada (Ordered List). O navegador numera automaticamente os itens, ideal para passo a passo. -->
+                    <li><span>1</span> Escolha um hambúrguer.</li> <!-- 'li' (List Item) representa cada item da lista. O 'span' interno provavelmente está sendo usado para estilizar o número diferentemente no CSS. -->
+                    <li><span>2</span> Informe os adicionais.</li>
+                    <li><span>3</span> Confirme endereço e pagamento.</li>
+                    <li><span>4</span> Envie o pedido pelo WhatsApp.</li>
+                </ol>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contato"> <!-- Tag semântica que define o rodapé da página. Geralmente abriga direitos autorais, horários de funcionamento e contatos secundários. -->
+        <div class="container rodape-conteudo">
+            <div>
+                <strong>Fogo de Palha</strong> 
+                <p>Projeto didático — dados fictícios.</p> 
+            </div>
+            <div>
+                <p>Terça a domingo · 18h às 23h</p> 
+                <p>Parnaíba — PI</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> <!-- Fecha a tag raiz, demarcando o fim de todo o documento HTML. -->
