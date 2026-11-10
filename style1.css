@@ -1,0 +1,338 @@
+/* ----------------------------------------------------
+   1. VARIÁVEIS GLOBAIS (:root)
+   ---------------------------------------------------- 
+   O seletor :root representa o elemento <html>. 
+   Aqui, declaramos "custom properties" (variáveis CSS) 
+   usando o prefixo "--". Isso centraliza as cores do projeto.
+   Se o cliente quiser mudar o vermelho do botão, basta 
+   mudar aqui, e todo o site atualizará automaticamente.
+*/
+:root {
+    --fundo: #fff8ed;           /* Cor creme para o fundo da página */
+    --escuro: #353635;          /* Cinza escuro para cabeçalhos e textos de contraste */
+    --texto: #2f2420;           /* Marrom bem escuro para o texto principal, mais suave que o preto puro */
+    --dourado: #cd954a;         /* Cor de destaque (detalhes, bordas, ícones) */
+    --vermelho: #a44d33;        /* Cor de ação principal (botões, preços) */
+    --vermelho-escuro: #7e3425; /* Cor para o efeito 'hover' (ao passar o mouse) nos botões */
+    --borda: #d8be9b;           /* Cor suave para as bordas dos cards */
+    --branco: #ffffff;
+}
+
+/* ----------------------------------------------------
+   2. RESET BÁSICO (Universals)
+   ---------------------------------------------------- */
+* {
+    /* box-sizing: border-box altera como a largura e altura dos elementos são calculadas. 
+       Com ele, os "paddings" e "borders" são incluídos na largura total do elemento, 
+       evitando que caixas quebrem o layout quando adicionamos margens internas. */
+    box-sizing: border-box;
+}
+
+html {
+    /* Faz com que a rolagem da página ao clicar em links âncora (como "Cardápio" ou "Início") 
+       seja fluida e suave, e não um salto brusco. */
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0; /* Remove a margem padrão aplicada pelos navegadores. */
+    background: var(--fundo); /* Aplica a cor de fundo usando a variável criada no :root. */
+    color: var(--texto);
+    font-family: Arial, Helvetica, sans-serif; /* Define a fonte padrão. Se a Arial falhar, tenta a Helvetica, e assim por diante. */
+    line-height: 1.6; /* Aumenta o espaçamento entre as linhas do texto, melhorando a leitura. */
+}
+
+img {
+    max-width: 100%; /* Garante que nenhuma imagem ultrapasse o tamanho do seu contêiner, essencial para imagens responsivas. */
+}
+
+/* ----------------------------------------------------
+   3. CLASSES DE ESTRUTURA GERAL (Layout)
+   ---------------------------------------------------- */
+.container {
+    /* O 'width: min(90%, 1120px)' é uma técnica moderna fantástica! 
+       Ele diz: "ocupe 90% da tela em celulares, mas se a tela for muito grande (como um monitor), 
+       trave a largura em no máximo 1120px". */
+    width: min(90%, 1120px);
+    margin: 0 auto; /* Centraliza o contêiner horizontalmente na tela. */
+}
+
+/* ----------------------------------------------------
+   4. CABEÇALHO (Header)
+   ---------------------------------------------------- */
+.cabecalho {
+    background: var(--escuro);
+    color: var(--branco);
+}
+
+.cabecalho-conteudo {
+    display: flex; /* Transforma o contêiner em um Flexbox, permitindo alinhar seus itens filhos de forma flexível. */
+    flex-direction: column; /* Em telas pequenas (mobile), os itens do cabeçalho (logo e navegação) ficarão empilhados (um embaixo do outro). */
+    gap: 1rem; /* Define o espaço entre os elementos empilhados. */
+    padding: 1rem 0; /* Espaçamento interno vertical de 1rem (geralmente 16px). */
+}
+
+.logo {
+    display: flex;
+    align-items: center; /* Alinha a imagem e o texto da logo verticalmente ao centro. */
+    gap: 0.75rem; /* Espaço entre o ícone da logo e o texto "Fogo de Palha". */
+    color: var(--branco);
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none; /* Remove o sublinhado padrão dos links (<a>). */
+}
+
+.logo img {
+    width: 55px;
+    height: 55px;
+    border: 2px solid var(--dourado); /* Cria uma moldura ao redor da imagem. */
+    border-radius: 50%; /* Transforma a imagem quadrada em um círculo perfeito. */
+    object-fit: cover; /* Garante que a imagem preencha o espaço do círculo sem se achatar ou distorcer. */
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap; /* Se houver muitos links, permite que eles quebrem para a linha de baixo, evitando que saiam da tela. */
+    gap: 1rem;
+}
+
+nav a {
+    color: var(--branco);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: var(--dourado); /* Quando o usuário passar o mouse por cima do link, ele mudará de branco para dourado. */
+}
+
+/* ----------------------------------------------------
+   5. SEÇÃO HERO (Destaque principal)
+   ---------------------------------------------------- */
+.hero {
+    padding: 4rem 0;
+    /* 'linear-gradient' cria um fundo com transição de cores. 
+       Aqui, vai do cinza escuro para um marrom quase preto em um ângulo de 135 graus. */
+    background: linear-gradient(135deg, var(--escuro), #211714);
+    color: var(--branco);
+}
+
+.hero-conteudo {
+    display: grid; /* Transforma o contêiner em um Grid, ideal para layouts complexos. */
+    gap: 2rem;
+    align-items: center; /* Centraliza verticalmente o texto e a ilustração. */
+}
+
+.destaque {
+    margin: 0 0 0.5rem;
+    color: var(--dourado);
+    font-weight: bold;
+    letter-spacing: 0.08em; /* Aumenta o espaço entre as letras, dando um ar mais sofisticado. */
+    text-transform: uppercase; /* Força todo o texto a ficar em MAIÚSCULAS. */
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0;
+    line-height: 1.15; /* Reduz o espaçamento entre linhas dos títulos, pois títulos grandes com espaçamento alto ficam desconectados. */
+}
+
+h1 {
+    max-width: 12ch; /* Limita a largura do título a 12 caracteres (ch), forçando quebras de linha estéticas ("Sabor de / verdade..."). */
+    margin-bottom: 1rem;
+    /* 'clamp' é a cereja do bolo da tipografia responsiva. 
+       Significa: "Mínimo de 2.5rem, tamanho ideal de 8% da largura da tela (8vw), e tamanho máximo de 4.5rem". 
+       O título cresce e diminui dinamicamente com a tela! */
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+.hero-texto {
+    max-width: 50ch; /* Limita o parágrafo a 50 caracteres para garantir uma leitura confortável (linhas muito longas cansam a vista). */
+    margin-bottom: 1.5rem;
+    color: #f4e5d0;
+    font-size: 1.1rem;
+}
+
+.hero-ilustracao {
+    display: grid;
+    min-height: 260px;
+    place-items: center; /* Atalho do Grid que centraliza o conteúdo do emoji tanto horizontalmente quanto verticalmente. */
+    border: 2px solid var(--dourado);
+    border-radius: 30px; /* Arredonda consideravelmente os cantos do quadro da ilustração. */
+    background: rgba(255, 255, 255, 0.05); /* Um fundo branco quase transparente (5% de opacidade). */
+    font-size: 9rem; /* Define o tamanho do emoji do hambúrguer. */
+}
+
+/* ----------------------------------------------------
+   6. BOTÕES
+   ---------------------------------------------------- */
+/* Agrupa as regras do botão principal e dos botões dentro dos cards do cardápio para evitar repetição de código. */
+.botao,
+.card a {
+    display: inline-block; /* Permite que o link (que é naturalmente inline) receba padding e dimensões, mas continue fluindo no texto. */
+    padding: 0.75rem 1.25rem;
+    border-radius: 999px; /* O valor 999px é um truque clássico para garantir que os botões fiquem perfeitamente arredondados (em forma de pílula). */
+    background: var(--vermelho);
+    color: var(--branco);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.botao:hover,
+.card a:hover {
+    background: var(--vermelho-escuro); /* Efeito interativo visual ao passar o mouse. */
+}
+
+/* ----------------------------------------------------
+   7. SEÇÃO CARDÁPIO E CARDS DE PRODUTOS
+   ---------------------------------------------------- */
+.cardapio {
+    padding: 4rem 0;
+}
+
+.titulo-secao {
+    max-width: 650px;
+    margin-bottom: 2rem;
+}
+
+.titulo-secao p:last-child {
+    /* Seleciona especificamente o último parágrafo (<p>) dentro da div .titulo-secao para mudar sua cor. */
+    color: #705b50;
+}
+
+.grade-produtos {
+    display: grid;
+    gap: 1.5rem;
+    /* Em dispositivos móveis (antes do Media Query), os cards ficarão empilhados em uma única coluna por padrão. */
+}
+
+.card {
+    position: relative; /* Fundamental! Permite que elementos filhos com 'position: absolute' (como a .selo) sejam posicionados em relação a este card, e não à página toda. */
+    display: flex;
+    flex-direction: column; /* Os elementos dentro do card (ícone, título, preço) ficam empilhados. */
+    padding: 1.5rem;
+    border: 1px solid var(--borda);
+    border-radius: 20px;
+    background: var(--branco);
+    box-shadow: 0 15px 35px rgba(70, 49, 32, 0.1); /* Cria uma sombra suave abaixo do card, dando a sensação de profundidade e flutuação. */
+}
+
+.card-destaque {
+    border: 3px solid var(--dourado); /* O card "Brasa Bacon" tem essa classe extra, sobrepondo a borda normal por uma dourada mais grossa. */
+}
+
+.selo {
+    position: absolute; /* Tira o selo do fluxo normal do HTML e o posiciona livremente. */
+    top: 1rem; /* Fixa a 1rem do topo do card (graças ao 'position: relative' do pai). */
+    right: 1rem; /* Fixa a 1rem da borda direita do card. */
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    background: var(--vermelho);
+    color: var(--branco);
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.card-icone {
+    margin-bottom: 1rem;
+    font-size: 4rem; /* Tamanho dos emojis 🍔, 🥓, 🥬 */
+}
+
+.card p {
+    color: #705b50;
+}
+
+.card-rodape {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Empurra o preço para a esquerda e o botão "Escolher" para a direita, maximizando o espaço entre eles. */
+    gap: 1rem;
+    margin-top: auto; /* Empurra o rodapé para o final do card, garantindo que botões fiquem alinhados mesmo se os títulos tiverem tamanhos diferentes. */
+    padding-top: 1rem;
+}
+
+.card-rodape strong {
+    color: var(--vermelho);
+    font-size: 1.2rem;
+}
+
+.card a {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem; /* O botão dentro do card é um pouco menor que o botão ".botao" principal da seção Hero. */
+}
+
+/* ----------------------------------------------------
+   8. SEÇÃO COMO PEDIR (Lista de Passos)
+   ---------------------------------------------------- */
+.pedido {
+    padding: 4rem 0;
+    background: #f4e5d0;
+}
+
+.pedido-conteudo {
+    display: grid;
+    gap: 2rem;
+}
+
+.pedido ol {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none; /* Remove os números padrões (1., 2., 3.) criados pelo HTML na tag <ol>. Eles serão substituídos pelos nossos círculos estilizados. */
+}
+
+.pedido li {
+    display: flex;
+    align-items: center; /* Alinha o texto do passo com o círculo numérico ao centro. */
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    background: var(--branco);
+}
+
+.pedido li span {
+    display: grid;
+    width: 35px; /* Define largura e altura iguais, fundamentais para criar um círculo perfeito. */
+    height: 35px;
+    place-items: center; /* Centraliza perfeitamente o número dentro do círculo. */
+    border-radius: 50%; /* Transforma o quadrado em círculo. */
+    background: var(--dourado);
+    font-weight: bold;
+}
+
+/* ----------------------------------------------------
+   9. RODAPÉ (Footer)
+   ---------------------------------------------------- */
+footer {
+    padding: 2rem 0;
+    background: #211714;
+    color: #f4e5d0;
+}
+
+.rodape-conteudo {
+    display: grid;
+    gap: 1rem;
+}
+
+footer p {
+    margin: 0.25rem 0; /* Aproxima levemente as linhas de texto do endereço e horários no rodapé. */
+}
+
+/* ----------------------------------------------------
+   10. MEDIA QUERIES (Responsividade)
+   ---------------------------------------------------- */
+/* As regras dentro deste bloco @media SÓ SERÃO APLICADAS quando a tela do dispositivo tiver PELO MENOS 700px de largura (tablets, notebooks, desktops). 
+   Tudo o que está antes do @media serve para celulares (Mobile First). */
+@media (min-width: 700px) {
+    
+    .cabecalho-conteudo,
+    .rodape-conteudo {
+        /* Muda o cabeçalho e o rodapé. Antes (no celular) eles empilhavam em colunas (flex-direction: column). 
+           Agora, eles se
